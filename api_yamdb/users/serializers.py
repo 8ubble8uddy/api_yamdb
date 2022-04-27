@@ -3,8 +3,8 @@ import uuid
 from django.core.mail import send_mail
 from rest_framework import serializers, validators
 
-from users.models import User
 from api_yamdb.settings import ADMIN_EMAIL
+from users.models import User
 
 
 class SignUpSerializer(serializers.ModelSerializer):

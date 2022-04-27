@@ -1,15 +1,17 @@
 from django.db import models
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, viewsets, mixins
+from rest_framework import filters, mixins, viewsets
 
-from api.permissions import IsAdminOrReadOnly, IsAuthorModeratorAdminOrReadOnly
-from api.serializers import (
-    ReviewSerializer, CommentSerializer, CategorySerializer,
-    GenreSerializer, TitleSerializer, TitleReadSerializer
-)
 from api.filters import TitleFilter
-from reviews.models import Review, Category, Genre, Title
+from api.permissions import IsAdminOrReadOnly, IsAuthorModeratorAdminOrReadOnly
+from api.serializers import (CategorySerializer,
+                             CommentSerializer,
+                             GenreSerializer,
+                             ReviewSerializer,
+                             TitleReadSerializer,
+                             TitleSerializer)
+from reviews.models import Category, Genre, Review, Title
 
 
 class CreateDestroyListViewSet(
@@ -42,7 +44,7 @@ class TitleViewSet(viewsets.ModelViewSet):
     filterset_class = TitleFilter
     queryset = Title.objects.annotate(rating=models.Avg(
         models.F('reviews__score')
-    ))
+    )).order_by('-id')
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -69,12 +71,13 @@ class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     permission_classes = (IsAuthorModeratorAdminOrReadOnly,)
 
+    def get_title(self):
+        return get_object_or_404(Title, pk=self.kwargs.get('title_id'))
+
     def get_review(self):
-        title = get_object_or_404(Title, pk=self.kwargs.get('title_id'))
-        review = get_object_or_404(
-            Review, pk=self.kwargs.get('review_id'), title=title
+        return get_object_or_404(
+            Review, pk=self.kwargs.get('review_id'), title=self.get_title()
         )
-        return review
 
     def get_queryset(self):
         return self.get_review().comments.all()
