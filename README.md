@@ -9,7 +9,7 @@ _Проект [YaMDb](https://github.com/8ubble8uddy/api_yamdb) собирает
 
 ### **Технологии**
 
-```Python``` ```Docker``` ```Django``` ```PostgreSQL``` ```Gunicorn``` ```nginx```
+```Python``` ```Docker``` ```Django``` ```SQLite``` ```Gunicorn``` ```nginx```
 
 ### **Как запустить проект:**
 
@@ -19,19 +19,6 @@ git clone https://github.com/8ubble8uddy/api_yamdb.git
 ```
 ```sh
 cd api_yamdb/infra/
-```
-
-Создать файл .env и добавить настройки подключения к базе данных:
-```sh
-nano .env
-```
-```
-DB_ENGINE=django.db.backends.postgresql
-DB_NAME=postgres
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-DB_HOST=db
-DB_PORT=5432
 ```
 
 Развернуть и запустить проект в контейнерах:
