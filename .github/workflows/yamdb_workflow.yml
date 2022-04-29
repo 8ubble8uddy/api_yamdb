@@ -1,4 +1,4 @@
-name: Yamdb
+name: yamdb-api
 
 on: [push]
 

@@ -1,24 +1,24 @@
 # Yamdb API
 
-[![CI](https://github.com/8ubble8uddy/api_yamdb/workflows/Yamdb/badge.svg
+[![CI](https://github.com/8ubble8uddy/api_yamdb/workflows/yamdb-api/badge.svg
 )](https://github.com/8ubble8uddy/api_yamdb/actions/workflows/yamdb_workflow.yml)
 
 ### **Описание**
 
-_Проект [YaMDb](https://github.com/8ubble8uddy/api_yamdb) собирает отзывы пользователей на различные произведения_
+_[yamdb-api](https://github.com/8ubble8uddy/yamdb-api) -  это REST API сервис. На этом сервисе пользователи могут оставлять к произведениям («Книги», «Фильмы», «Музыка») текстовые отзывы и ставить произведению оценку в диапазоне от одного до десяти. Из пользовательских оценок формируется рейтинг произведения._
 
 ### **Технологии**
 
-```Python``` ```Docker``` ```Django``` ```SQLite``` ```Gunicorn``` ```nginx```
+```Python``` ```Django``` ```SQLite``` ```pytest``` ```Docker``` ```Gunicorn``` ```nginx```
 
 ### **Как запустить проект:**
 
 Клонировать репозиторий и перейти внутри него в директорию ```infra/```:
 ```
-git clone https://github.com/8ubble8uddy/api_yamdb.git
+git clone https://github.com/8ubble8uddy/yamdb-api.git
 ```
 ```sh
-cd api_yamdb/infra/
+cd yamdb-api/infra/
 ```
 
 Развернуть и запустить проект в контейнерах:
